@@ -19,6 +19,8 @@ export class BodyComponent implements OnInit {
     new Pokemon(8,"Wartortle",Math.floor(Math.random() * 10) + 1),
     new Pokemon(9,"Blastoise",Math.floor(Math.random() * 10) + 1),
     new Pokemon(10,"Caterpie",Math.floor(Math.random() * 10) + 1),
+    new Pokemon(11,"Metapod",Math.floor(Math.random() * 10) + 1),
+    new Pokemon(12,"Butterfree",Math.floor(Math.random() * 10) + 1)
   ];
 
   
