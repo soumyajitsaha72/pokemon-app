@@ -1,0 +1,39 @@
+<!-- Card Component -->
+<app-card class="card"></app-card>
+
+
+<!-- Card without component -->
+<div class="card" *ngFor="let item of items;">
+    <div class="card-img flex-center"><img src="/assets/images/pokemon-images/{{ item.id }}.gif" alt=""></div>
+    <div class="card-id">
+        <div>#{{ item.id }}</div>
+        <div>xP : {{ item.xp }}</div>
+    </div>
+    <div class="card-name flex-center">
+        <p>{{ item.name }}</p>
+    </div>
+    <div class="card-button flex-center">
+        <button class="card-button-inside">Add to Team +</button>
+    </div>
+</div>
+
+
+
+
+
+<!-- Giga Pokemon Card -->
+<div class="card giga-card">
+    <div class="card-img flex-center">
+        <img src="/assets/images/pokemon-images/fearow.gif" alt="">
+    </div>
+    <div class="card-id">
+        <div>#130</div>
+        <div>xP : 10</div>
+    </div>
+    <div class="card-name flex-center">
+        <p>Bulbasaur</p>
+    </div>
+    <div class="card-button flex-center">
+        <button class="card-button-inside">Add to Team +</button>
+    </div>
+</div>
