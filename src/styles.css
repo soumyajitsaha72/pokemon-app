@@ -165,7 +165,20 @@
 }
 
 .giga-card {
-    box-shadow: #FFD700 0px 1px 4px, #FFD700 0px 0px 0px 3px;
+    box-shadow: #0A285F 0px 1px 4px, #0075BE 0px 0px 0px 3px;
+
+    /* background-color: #f39f86; */
+    /* background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); */
+
+    /* Ask Sabarno */
+    background-image: url(/assets/images/back2.gif); 
+    color: #0A285F;
+}
+
+.giga-card button {
+    border: 2px solid #0A285F;
+    color: #D5A100;
+    background-color: #0A285F;
 }
 
 /* Footer Section */
