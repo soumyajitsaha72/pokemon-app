@@ -1,2 +1,2 @@
-<!-- <app-home-page></app-home-page> -->
-<app-login-page></app-login-page>
+<app-login-page *ngIf="!isLoggedIn"></app-login-page>
+<app-home-page *ngIf="isLoggedIn"></app-home-page>

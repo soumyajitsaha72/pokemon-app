@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
+  isSignup = false;
+
   constructor() { }
 
   ngOnInit(): void {
