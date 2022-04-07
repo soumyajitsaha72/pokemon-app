@@ -11,7 +11,7 @@
             <p>#{{ poke.id }}</p>
         </div>
         <div class="card-clicked-top-name">
-            <p>{{ poke.name }}</p>
+            <p>{{ poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}}</p>
         </div>
         <div class="card-clicked-top-xp">
             <p>xP : {{ poke.xp }}</p>
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="card-clicked-img flex-center">
-        <img src="/assets/images/{{ poke.id }}.png" alt="card-clicked-img">
+        <img [src]="poke.sprites.other.dream_world.front_default" alt="card-clicked-img">
     </div>
     <div class="card-clicked-desc">
         <div class="flex-left">
@@ -29,9 +29,12 @@
         </div>
         <div class="flex-left">Height : {{ poke.height }} meter</div>
         <div class="flex-left">Weight : {{ poke.weight }} lbs</div>
-        <div class="flex-left">Abilities : {{ poke.abilities }}</div>
-        <div class="flex-left">Type : <span class="poke-type" *ngFor="let type of poke.types"
-                [ngStyle]="{backgroundColor: colors[type]}">{{ type.charAt(0).toUpperCase() + type.slice(1) }}</span>
+        <div class="flex-left">Abilities : <span class="poke-type" *ngFor="let a of poke.abilities">{{
+                a.ability.name.charAt(0).toUpperCase() + a.ability.name.slice(1)
+                }}</span>
+        </div>
+        <div class="flex-left">Type : <span class="poke-type" *ngFor="let t of poke.types"
+                [ngStyle]="{backgroundColor: colors[t.type.name]}">{{ t.type.name }}</span>
         </div>
         <div class="flex-left">Weaknesses : <span class="poke-type" *ngFor="let weakness of poke.weaknesses"
                 [ngStyle]="{backgroundColor: colors[weakness]}">{{ weakness.charAt(0).toUpperCase() + weakness.slice(1)

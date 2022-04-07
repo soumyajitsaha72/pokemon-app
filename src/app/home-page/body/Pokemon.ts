@@ -6,9 +6,10 @@ export class Pokemon {
     weight:number;
     abilities:string[];
     types:string[];
-    weaknesses:string[]
+    weaknesses:string[];
+    sprites:string[]
 
-    constructor(id:number,name:string,xp:number,height:number,weight:number,abilities:string[],types:string[],weaknesses:string[]){
+    constructor(id:number,name:string,xp:number,height:number,weight:number,abilities:string[],types:string[],weaknesses:string[],sprites:string[]){
         this.id = id;
         this.name = name;
         this.xp = xp;
@@ -17,5 +18,7 @@ export class Pokemon {
         this.abilities = abilities;
         this.types = types;
         this.weaknesses = weaknesses;
+        this.sprites = sprites;
     }
+
 }

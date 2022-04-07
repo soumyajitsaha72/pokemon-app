@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from './Pokemon';
 
+import { HttpClient } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
+
+import { PokemonApiService } from 'src/app/pokemon-api.service';
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -28,33 +33,14 @@ export class BodyComponent implements OnInit {
     fairy: '#D685AD',
   };
 
-
   isShow = false;
   poke: Pokemon;
 
-  items = [
-    new Pokemon(1,"Bulbasaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass","psychic"],["fire","ice"]),
-    new Pokemon(2,"Ivysaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(3,"Venusaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass","dragon"],["fire","ice"]),
-    new Pokemon(4,"Charmander",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(5,"Charmeleon",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(6,"Charizard",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(7,"Squirtle",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(8,"Wartortle",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(9,"Blastoise",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(10,"Caterpie",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(11,"Metapod",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"]),
-    new Pokemon(1,"Bulbasaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass","psychic"],["fire","ice"]),
-    new Pokemon(1,"Bulbasaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass","psychic"],["fire","ice"]),
-    new Pokemon(1,"Bulbasaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass","psychic"],["fire","ice"]),
-    new Pokemon(1,"Bulbasaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass","psychic"],["fire","ice"]),
-    new Pokemon(1,"Bulbasaur",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass","psychic"],["fire","ice"]),
-    new Pokemon(12,"Butterfree",Math.floor(Math.random() * 10) + 1,0.5,2.4,["blaze"],["fire","grass"],["fire","ice"])
-  ];
-
+  //Contains all the pokemons
+  items = [];
 
   onCardClicked(data : any){
-    this.poke = new Pokemon(data.id,data.name,data.xp,data.height,data.weight,data.abilities,data.types,data.weaknesses);
+    this.poke = new Pokemon(data.id,data.name,data.base_experience,data.height,data.weight,data.abilities,data.types,data.weaknesses,data.sprites);
     this.isShow = true;
   }
 
@@ -70,9 +56,26 @@ export class BodyComponent implements OnInit {
     });
   }
 
-  constructor() { }
+  limit = '151';
+
+  constructor(private _pokemonApiService: PokemonApiService) { }
 
   ngOnInit(): void {
+    this.getPokemonList();
+  }
+
+  private getPokemonList() {
+    this._pokemonApiService.getListOfPokemon(this.limit).subscribe(
+      response => { this.getPokemonDetails(response.map(response => response.url)); },
+      error => { console.error(error); }
+    );
+  }
+
+  private getPokemonDetails(urlList: Array<string>) {
+    this._pokemonApiService.getPokemonDetails(urlList).subscribe(
+      response => { this.items = response; },
+      error => { console.error(error); }
+    );
   }
 
 }

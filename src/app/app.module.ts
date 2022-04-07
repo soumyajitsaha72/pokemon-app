@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { BodyComponent } from './home-page/body/body.component';
 import { CardComponent } from './home-page/body/card/card.component';
 import { LoginComponent } from './login-page/login/login.component';
 import { SignupComponent } from './login-page/signup/signup.component';
+import { PokemonApiService } from './pokemon-api.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,10 @@ import { SignupComponent } from './login-page/signup/signup.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [PokemonApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

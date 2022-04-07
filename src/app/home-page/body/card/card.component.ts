@@ -9,7 +9,7 @@ import { Pokemon } from '../Pokemon';
 export class CardComponent implements OnInit {
 
   // Binding Card component to Parent
-  @Input() element : {id:Pokemon["id"],name:Pokemon["name"],xp:Pokemon["xp"]}
+  @Input() element : {id:number,name:string,base_experience:number}
 
 
   constructor() { }

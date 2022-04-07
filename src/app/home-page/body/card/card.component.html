@@ -3,10 +3,10 @@
 </div>
 <div class="card-id">
     <div>#{{ element.id }}</div>
-    <div>xP : {{ element.xp }}</div>
+    <div>xP : {{ element.base_experience }}</div>
 </div>
 <div class="card-name flex-center">
-    <p>{{ element.name }}</p>
+    <p>{{ element.name.charAt(0).toUpperCase() + element.name.slice(1) }}</p>
 </div>
 <div class="card-button flex-center">
     <button class="card-button-inside">Add to Team +</button>

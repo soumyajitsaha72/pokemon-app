@@ -1,0 +1,8 @@
+.background {
+    background: url("/assets/images/back3.gif");
+}
+
+.extra {
+    margin-top: 0.2rem;
+    border-top: 1px solid black;
+}
