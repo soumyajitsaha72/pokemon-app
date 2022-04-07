@@ -2,12 +2,20 @@ export class Pokemon {
     id:number;
     name:string;
     xp:number;
-    isGiga:boolean
+    height:number;
+    weight:number;
+    abilities:string[];
+    types:string[];
+    weaknesses:string[]
 
-    constructor(id:number,name:string,xp:number,isGiga:boolean){
+    constructor(id:number,name:string,xp:number,height:number,weight:number,abilities:string[],types:string[],weaknesses:string[]){
         this.id = id;
         this.name = name;
         this.xp = xp;
-        this.isGiga = isGiga;
+        this.height = height;
+        this.weight = weight;
+        this.abilities = abilities;
+        this.types = types;
+        this.weaknesses = weaknesses;
     }
 }

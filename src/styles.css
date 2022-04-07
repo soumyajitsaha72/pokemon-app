@@ -123,6 +123,10 @@
     row-gap: 0.2rem;
 }
 
+.card:hover {
+    background-image: url(/assets/images/back2.gif);
+}
+
 .card-img {
     grid-area: card-img;
 }
@@ -164,16 +168,12 @@
 
 }
 
-.giga-card {
+/* .giga-card {
     box-shadow: #0A285F 0px 1px 4px, #0075BE 0px 0px 0px 3px;
 
-    /* background-color: #f39f86; */
-    /* background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); */
-
-    /* Ask Sabarno */
     background-image: url(/assets/images/back2.gif); 
     color: #0A285F;
-}
+} */
 
 .giga-card button {
     border: 2px solid #0A285F;
@@ -194,6 +194,18 @@
 .flex-center {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.flex-left {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
 }
 
