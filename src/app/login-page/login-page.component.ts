@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  isSignup = false;
+  isSignup:boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.isSignup = false;
   }
 
 }

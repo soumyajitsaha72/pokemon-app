@@ -13,8 +13,9 @@
 
         <!-- Make different Component -->
         <div class="login-body-right">
-            <app-login *ngIf="!isSignup"></app-login>
-            <app-signup *ngIf="isSignup"></app-signup>
+            <!-- To Toggle between login and signup, we have used event binding -->
+            <app-login *ngIf="!isSignup" (toggle)="this.isSignup=$event"></app-login>
+            <app-signup *ngIf="isSignup" (toggle)="this.isSignup=$event"></app-signup>
         </div>
     </div>
 </div>

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from './Pokemon';
-
 import { HttpClient } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 
 import { PokemonApiService } from 'src/app/pokemon-api.service';
+
+import { Pokemon } from './Pokemon';
+import { pokeDescription } from "./pokemon-desc";
+import { pokeWeakness } from "./pokemon-weakness";
+import { pokeTypeColors } from "./pokemon-type-colors";
 
 @Component({
   selector: 'app-body',
@@ -12,26 +15,7 @@ import { PokemonApiService } from 'src/app/pokemon-api.service';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
-  colors = {
-    normal: '#A8A77A',
-    fire: '#EE8130',
-    water: '#6390F0',
-    electric: '#F7D02C',
-    grass: '#7AC74C',
-    ice: '#96D9D6',
-    fighting: '#C22E28',
-    poison: '#A33EA1',
-    ground: '#E2BF65',
-    flying: '#A98FF3',
-    psychic: '#F95587',
-    bug: '#A6B91A',
-    rock: '#B6A136',
-    ghost: '#735797',
-    dragon: '#6F35FC',
-    dark: '#705746',
-    steel: '#B7B7CE',
-    fairy: '#D685AD',
-  };
+  colors = pokeTypeColors;
 
   isShow = false;
   poke: Pokemon;
@@ -40,7 +24,7 @@ export class BodyComponent implements OnInit {
   items = [];
 
   onCardClicked(data : any){
-    this.poke = new Pokemon(data.id,data.name,data.base_experience,data.height,data.weight,data.abilities,data.types,data.weaknesses,data.sprites);
+    this.poke = new Pokemon(data.id,data.name,data.base_experience,data.height,data.weight,data.abilities,data.types,data.weaknesses,data.sprites,data.desc);
     this.isShow = true;
   }
 
@@ -56,7 +40,27 @@ export class BodyComponent implements OnInit {
     });
   }
 
-  limit = '151';
+
+  //Modify Code According to our needs. Like change the Xp and add description, Weaknesses
+  changeXp(arr:any[]){
+    arr.forEach(e => {
+      e.base_experience = Math.floor(Math.random() * 10) + 1;
+    });
+  }
+
+  addWeaknesses(arr:any[]){
+    arr.forEach(e => {
+      e.weaknesses = pokeWeakness[e.id];
+    });
+  }
+
+  addDescription(arr:any[]){
+    arr.forEach(e => {
+      e.desc = pokeDescription[e.id];
+    });
+  }
+
+
 
   constructor(private _pokemonApiService: PokemonApiService) { }
 
@@ -64,6 +68,7 @@ export class BodyComponent implements OnInit {
     this.getPokemonList();
   }
 
+  limit = '151';
   private getPokemonList() {
     this._pokemonApiService.getListOfPokemon(this.limit).subscribe(
       response => { this.getPokemonDetails(response.map(response => response.url)); },
@@ -73,7 +78,7 @@ export class BodyComponent implements OnInit {
 
   private getPokemonDetails(urlList: Array<string>) {
     this._pokemonApiService.getPokemonDetails(urlList).subscribe(
-      response => { this.items = response; },
+      response => { this.items = response; this.changeXp(this.items); this.addWeaknesses(this.items); this.addDescription(this.items);},
       error => { console.error(error); }
     );
   }
