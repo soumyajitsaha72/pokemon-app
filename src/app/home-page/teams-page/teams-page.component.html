@@ -1,0 +1,31 @@
+<div class="grid-container">
+    <app-navbar class="navbar"></app-navbar>
+
+
+
+    <div class="content">
+        <div class="teams">
+            <h4 class="flex-center" style="padding-top: 0.2rem;">Teams</h4>
+            <p *ngIf="teamsArr.length == 0"> Please add pokemons to teams</p>
+
+
+            <div class="poke-teams" *ngFor="let item of teamsArr">
+                <div class="poke-teams-id">#{{item}}</div>
+                <div class="poke-teams-name">{{pokemons[item-1]}}</div>
+                <div class="poke-teams-img">
+                    <img src="/assets/images/pokemon-images/{{item}}.gif" alt="poke-teams-img">
+                </div>
+                <div class="poke-teams-button">
+                    <button class="remove-button" (click)="onClick(item)">X</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+    <app-footer class="footer flex-center"></app-footer>
+</div>

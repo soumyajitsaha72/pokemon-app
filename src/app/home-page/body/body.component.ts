@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import { Pokemon } from './Pokemon';
 import { pokeDescription } from "./pokemon-desc";
 import { pokeWeakness } from "./pokemon-weakness";
 import { pokeTypeColors } from "./pokemon-type-colors";
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-body',
@@ -15,9 +16,11 @@ import { pokeTypeColors } from "./pokemon-type-colors";
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
+  searchPokemon = ''; //For searching each pokemon
+
   colors = pokeTypeColors;
 
-  isShow = false;
+  isShow: boolean;
   poke: Pokemon;
 
   //Contains all the pokemons
@@ -41,6 +44,7 @@ export class BodyComponent implements OnInit {
   }
 
 
+
   //Modify Code According to our needs. Like change the Xp and add description, Weaknesses
   changeXp(arr:any[]){
     arr.forEach(e => {
@@ -62,10 +66,16 @@ export class BodyComponent implements OnInit {
 
 
 
-  constructor(private _pokemonApiService: PokemonApiService) { }
+  constructor(private _pokemonApiService: PokemonApiService, private search : SearchService) { 
+    this.search.searchKeyword.subscribe(
+      (s) => {this.searchPokemon = s.toLowerCase();}
+    )
+  }
 
   ngOnInit(): void {
     this.getPokemonList();
+    this.isShow = false;
+
   }
 
   limit = '151';

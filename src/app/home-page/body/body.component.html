@@ -1,8 +1,7 @@
 <!-- Card Component -->
-<app-card class="card" *ngFor="let item of items;" [element]="item" (click)="onCardClicked(item);scroll()">
+<app-card class="card" *ngFor="let item of items | filter:searchPokemon" [element]="item"
+    (click)="onCardClicked(item);scroll()">
 </app-card>
-
-<!-- [ngClass]="{'giga-card' : item.isGiga}" -->
 
 <!-- This will only appear when clicked -->
 <div id="target" class="card-clicked" *ngIf="isShow">
@@ -35,7 +34,8 @@
                 [ngStyle]="{backgroundColor: colors[t.type.name]}">{{ t.type.name }}</span>
         </div>
         <div class="flex-left wrap">Weaknesses : <span class="poke-type" *ngFor="let weakness of poke.weaknesses"
-                [ngStyle]="{backgroundColor: colors[weakness]}">{{ weakness.charAt(0).toUpperCase() + weakness.slice(1)
+                [ngStyle]="{backgroundColor: colors[weakness]}">{{ weakness.charAt(0).toUpperCase() +
+                weakness.slice(1)
                 }}</span></div>
     </div>
 </div>
