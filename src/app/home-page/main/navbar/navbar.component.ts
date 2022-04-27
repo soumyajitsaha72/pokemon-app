@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchService } from '../../search.service';
 import { XpService } from '../../xp.service';
@@ -9,7 +9,7 @@ import { XpService } from '../../xp.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  xp = this.xpServ.xp;
+  xp = this.xpServ.getXp();
   searchField= "";
 
   onInput(){
@@ -24,6 +24,10 @@ export class NavbarComponent implements OnInit {
   navigateToTeams(){
     // this.router.navigate(['teams']);
     this.router.navigateByUrl('/teams');
+  }
+
+  navigateToLeaderboard(){
+    this.router.navigateByUrl('/leaderboard');
   }
 
   navigateToHome(){

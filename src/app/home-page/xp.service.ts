@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 @Injectable({providedIn:'root'})
 export class XpService {
-    xp = 100;
+    private xp = 100;
 
     getXp(){
         return this.xp;
@@ -10,9 +10,11 @@ export class XpService {
 
     addXp(pokeXp : number){
         this.xp = this.xp + pokeXp;
+        return this.xp;
     }
 
     removeXp(pokeXp : number){
         this.xp = this.xp - pokeXp;
+        return this.xp;
     }
 }

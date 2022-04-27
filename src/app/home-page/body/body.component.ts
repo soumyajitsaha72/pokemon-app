@@ -9,6 +9,7 @@ import { pokeDescription } from "./pokemon-desc";
 import { pokeWeakness } from "./pokemon-weakness";
 import { pokeTypeColors } from "./pokemon-type-colors";
 import { SearchService } from '../search.service';
+import { TeamsService } from '../teams.service';
 
 @Component({
   selector: 'app-body',
@@ -29,6 +30,9 @@ export class BodyComponent implements OnInit {
   onCardClicked(data : any){
     this.poke = new Pokemon(data.id,data.name,data.base_experience,data.height,data.weight,data.abilities,data.types,data.weaknesses,data.sprites,data.desc);
     this.isShow = true;
+
+    this.teamServ.pokeArray = this.items; //Loopwhole
+
   }
 
   onCloseButtonClicked() {
@@ -66,7 +70,7 @@ export class BodyComponent implements OnInit {
 
 
 
-  constructor(private _pokemonApiService: PokemonApiService, private search : SearchService) { 
+  constructor(private _pokemonApiService: PokemonApiService, private teamServ: TeamsService,private search : SearchService) { 
     this.search.searchKeyword.subscribe(
       (s) => {this.searchPokemon = s.toLowerCase();}
     )
@@ -92,5 +96,6 @@ export class BodyComponent implements OnInit {
       error => { console.error(error); }
     );
   }
+
 
 }

@@ -17,6 +17,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { TeamsPageComponent } from './home-page/teams-page/teams-page.component';
 import { MainComponent } from './home-page/main/main.component';
+import { LeaderboardComponent } from './home-page/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MainComponent } from './home-page/main/main.component';
     LoginComponent,
     SignupComponent,
     TeamsPageComponent,
-    MainComponent
+    MainComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,

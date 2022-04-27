@@ -2,8 +2,23 @@ import { Injectable } from "@angular/core";
 
 @Injectable({providedIn:'root'})
 export class TeamsService {
+    pokeArray = [];
+    
     private team = [];
     private teamLength = 0;
+    private score = 0;
+
+    getScore(){
+        return this.score;
+    }
+
+    addScore(pokeScore : number){
+        this.score = this.score + pokeScore;
+    }
+
+    removeScore(pokeScore : number){
+        this.score = this.score - pokeScore;
+    }
 
     getTeam(){
         return this.team;

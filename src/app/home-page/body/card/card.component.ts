@@ -17,6 +17,7 @@ export class CardComponent implements OnInit {
     this.teamServ.addToTeam(pokemonId);
     // console.log(this.teamServ);
     this.xpServ.removeXp(xp);
+    this.teamServ.addScore(xp);
   }
 
   isInTeam(pokemonId : number){
