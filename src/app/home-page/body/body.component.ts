@@ -58,7 +58,8 @@ export class BodyComponent implements OnInit {
 
   addWeaknesses(arr:any[]){
     arr.forEach(e => {
-      e.weaknesses = pokeWeakness[e.id];
+      // e.weaknesses = pokeWeakness[e.id];
+      e.weaknesses = pokeWeakness[Math.floor(Math.random() * 12) + 1];
     });
   }
 
